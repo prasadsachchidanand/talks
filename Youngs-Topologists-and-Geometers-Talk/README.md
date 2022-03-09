@@ -2,4 +2,4 @@
 
 This contains the TeX file for my talk. See the slides [here](https://students.iiserkol.ac.in/~sp17rs038/assets/attachments/ytg.pdf).
 
-![](slide.png)
+![](talk-1.png)
