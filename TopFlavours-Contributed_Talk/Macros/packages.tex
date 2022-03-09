@@ -1,0 +1,50 @@
+\usepackage{amsmath, amssymb, amscd, amsthm, amsfonts, amsbsy, appendix}
+\usepackage{lmodern}
+\usepackage{bbm, mathrsfs, bm, linearb, upgreek, textcomp, mathdots}
+\usepackage{mathtools, extarrows, url}
+\usepackage[all, cmtip]{xy} 
+\usepackage[intoc]{nomencl}
+\usepackage{pgf}
+\usepackage{calligra}
+\usepackage{ebgaramond}
+\usepackage{bookmark}% faster updated bookmarks
+\usepackage[most]{tcolorbox}
+\usepackage{varwidth}   %% provides varwidth environment
+
+\usepackage{tikz,tcolorbox}
+
+\makeatletter
+\newcommand{\DrawLine}{%
+  \begin{tikzpicture}
+  \path[use as bounding box] (0,0) -- (\linewidth,0);
+  \draw[color=red!50!yellow,dashed,dash phase=2pt]
+        (0-\kvtcb@leftlower-\kvtcb@boxsep,0)--
+        (\linewidth+\kvtcb@rightlower+\kvtcb@boxsep,0);
+  \end{tikzpicture}%
+  }
+\makeatother
+
+% For pause in align
+%https://tex.stackexchange.com/questions/16186/equation-numbering-problems-in-amsmath-environments-with-pause/75550#75550
+\makeatletter
+\let\save@measuring@true\measuring@true
+\def\measuring@true{%
+  \save@measuring@true
+  \def\beamer@sortzero##1{\beamer@ifnextcharospec{\beamer@sortzeroread{##1}}{}}%
+  \def\beamer@sortzeroread##1<##2>{}%
+  \def\beamer@finalnospec{}%
+}
+
+% For continued proof 
+
+\newenvironment<>{proofs}[1][\proofname]{%
+    \par
+    \def\insertproofname{#1\@addpunct{.}}%
+    \usebeamertemplate{proof begin}#2}
+  {\usebeamertemplate{proof end}}
+\makeatother
+
+% For rending in full screen
+% \hypersetup{pdfpagemode=FullScreen}
+
+
