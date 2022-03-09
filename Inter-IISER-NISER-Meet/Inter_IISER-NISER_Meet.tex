@@ -1,0 +1,375 @@
+\documentclass{beamer}      
+\usetheme{Boadilla}
+
+\input{Macros/newcommands}
+\input{Macros/packages}
+
+%\hypersetup{pdfpagemode=FullScreen}
+\title{Cut locus and Morse-Bott Function}
+\author{Sachchidanand Prasad}
+\institute{\small Indian Institute of Science Education and Research, Kolkata, India}
+\date{12th July, 2021}
+
+\definecolor{titlepage}{rgb}{0.98, 0.94, 0.75}
+
+\setbeamertemplate{navigation symbols}{} % Navigation symbols will be removed
+\setbeamertemplate{footline}{}
+\setbeamertemplate{itemize items}[ball]  % Itemize into balls
+
+
+\definecolor{defn}{rgb}{0.6, 0.4, 0.8}
+
+
+\begin{document}
+	%\setbeamercolor{background canvas}{bg=titlepage}
+	\titlepage
+	\vspace{0.1cm}
+	\begin{center}
+		\Large \textcolor[rgb]{0.4,0,0.5}{IINMM 2021 \\
+		\noindent IISER Tirupati}
+	\end{center}
+
+	\begin{frame}
+		\frametitle<presentation>{Outline of the talk}
+		\tableofcontents
+	\end{frame}	
+
+	\section{Morse-Bott Functions}
+	\begin{frame}
+		\frametitle<presentation>{Morse Functions}
+		\p Let $M$ be a smooth manifold and $f:M\to \rbb$  be any smooth function.
+		\begin{enumerate}
+			\p \item A point $p\in M$ is a \emph{\defn{critical point}} of $f$ if $df_p = 0$. \p In a coordinate neighborhood $(\phi=(x_1,x_2,\ldots,x_n),U)$ around $p$ for all $j=1,2,\ldots,n$ we have 
+			\begin{displaymath}
+			\delbydel{(f\circ \phi^{-1})}{x_j}(\phi(p))=0. 
+			\end{displaymath}
+			\p \item A critical point $p$ is called {\emph{\defn{non-degenerate}}} \p if determinant of the Hessian matrix
+			\begin{displaymath}
+			\hess_p(f) \defeq \left(\delbydel{^2(f\circ \phi^{-1})}{x_i\partial x_j}(\phi(p))\right)
+			\end{displaymath}
+			is non-zero. 
+			\p \item The function $f$ is said to be a \emph{\defn{Morse function}} if all the critical points of $f$ are non-degenerate. \p We denote the set of all critical points of $f$ by $\mathrm{Cr}(f)$.
+		\end{enumerate}
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle<presentation>{Morse-Bott Function}
+		
+		\p\begin{definition}[Morse-Bott functions]
+			\p Let $M$ be a Riemannian manifold. A smooth submanifold $ N\subset M $ is said to be {\emph{\defn{non-degenerate critical submanifold}}} of $f$ if $N\subseteq \crf$ \p and for any $p\in N$, $\hess_{p}(f)$ is \alert<5>{non-degenerate in the direction normal to $N$ at $p$}. \p[6] The function $f$ is said to be {\emph{\defn{Morse-Bott}}} if the connected components of $ \crf $ are non-degenerate critical submanifolds.
+		\end{definition}
+		\p[5] The $\hess_p(f)$ is \alert<5>{non-degenerate in the direction normal to $N$ at $p$} means for any $V\in (T_pN)^\perp$ there exists $W\in  (T_pN)^\perp$ such that $\hess_p(f)(V,W)\neq 0$.
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle<presentation>{Example 1}
+		\begin{example}
+			\p Let $M=\rbb^2$ and $N = \{(x,0):x\in \rbb\}$. Then the distance between a point $\bf{p}\in \rbb^{2}$ and $N$ is given by \p
+			\begin{displaymath}
+			d(\bf{p},N) \defeq \inf_{\bf{q}\in N} d(\bf{p},\bf{q}).
+			\end{displaymath}
+			\p We shall denote by $d^2$ the square of the distance. Consider the function
+			\begin{displaymath}
+				f:M\to \rbb, (x,y)\mapsto d^2((x,y),N) = y^2.
+			\end{displaymath}
+			\p Thus the set of critical points is the whole $x$-axis \p and 
+				\begin{displaymath}
+					\hess_{(x,0)}f = 
+					\begin{pmatrix}
+						0 & 0 \\ 0 & 2
+					\end{pmatrix}
+				\end{displaymath}
+				\p which is non-degenerate in the normal direction ($y$-axis).
+		\end{example}
+	\end{frame}	
+
+
+
+	\section{Cut locus}
+	\subsection{Cut locus of a point}
+	\begin{frame}
+		\frametitle<presentation>{Cut Locus of a Point}
+		\p\begin{definition}[Cut locus]
+			Let $M$ be a complete Riemannian manifold and $p\in M$. \p If $\cu$ denotes the \emph{\defn{cut locus}} of $p$, \p then a point $q\in \cu$ \p if there exists a minimal geodesic joining $p$ to $q$, \p any extension of which beyond $q$ is not minimal. 	
+		\end{definition}
+	\end{frame}	
+
+	\begin{frame}
+	\frametitle<presentation>{An Example: Cut locus of south pole in sphere}
+	\p 
+		\begin{figure}[htbp]
+			\begin{overlayarea}{8cm}{7.7cm}
+				\includegraphics<2>{Figures/sphere-1.pdf}
+				\includegraphics<3>{Figures/sphere-2.pdf}
+				\includegraphics<4>{Figures/sphere-3.pdf}
+				\includegraphics<5>{Figures/sphere-4.pdf}
+			\end{overlayarea}
+		\end{figure}
+	\end{frame}	
+
+	\subsection{Cut locus of a submanifold}
+	\begin{frame}
+		\frametitle<presentation>{Cut Locus of a Submanifold}
+		\p 
+		\begin{definition}
+			A geodesic $\gamma $ is called a \emph{\defn{distance minimal geodesic}} joining $N$ to $p$ if there exists $q\in N$ such that \p $\gamma$ is a minimal geodesic joining $q$ to $p$ and \p $l(\gamma)= d(p,N) $. \p We will refer to such geodesics as \textit{$N$-geodesics}.
+		\end{definition}
+
+		\vspace{1cm}
+		\p
+		\begin{definition}[Cut locus of a submanifold]
+			\p Let $M$ be a Riemannian manifold and $N$ be any non-empty subset of $M.$ \p If $\cutn$ denotes the \emph{\defn{cut locus of $N$}}, \p then we say that $q\in \cutn $ if \p there exists an $N$-geodesic joining $N$ to $q$ \p such that any extension of it beyond $q$ is not a distance minimal geodesic.
+		\end{definition}
+		\p The cut locus of a sphere in $\mathbb{R}^3$ is its center.
+	\end{frame}	
+
+
+	\begin{frame}
+	\frametitle<presentation>{An Example: Cut locus of great circle in sphere}
+	\p 
+		\begin{figure}[htbp]
+			\begin{overlayarea}{6cm}{6cm}
+				\includegraphics<2>{Figures/cut-locus-of-great-circle-1.pdf}
+				\includegraphics<3>{Figures/cut-locus-of-great-circle-2.pdf}
+				\includegraphics<4>{Figures/cut-locus-of-great-circle-3.pdf}
+				\includegraphics<5>{Figures/cut-locus-of-great-circle-4.pdf}
+				\includegraphics<6>{Figures/cut-locus-of-great-circle-5.pdf}
+			\end{overlayarea}
+		\end{figure}
+	\end{frame}	
+
+	
+	\section{An illuminating example}
+	\begin{frame}
+		\frametitle<presentation>{An Example of Morse-Bott function and relation to the Cut Locus}
+		\p Let $ M = M(n,\rbb) $, the set of $n\times n$ matrices, and $ N=O(n,\rbb) $, set of all orthogonal $n\times n$ matrices. \p We fix the standard Euclidean metric on $M(n,\rbb)$ by identifying it with $\mathbb{R}^{n^2}$. \p This induces a distance function given by
+		\begin{equation*}
+			d(A,B) \defeq \sqrt{\trace{(A-B)^T(A-B)}}, ~~A,B\in M(n,\rbb)
+		\end{equation*}
+		\p
+		Consider the distance squared function
+		\begin{displaymath}
+		f: M(n,\rbb)\to \rbb,~~ A\mapsto d^2(A, O(n,\rbb)).
+		\end{displaymath}
+		\p We will show that $f$ is a Morse-Bott function with critical submanifold as $O(n,\rbb)$.
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle<presentation>{}
+		\begin{tcolorbox}[colback = white, colframe=red!50!yellow] 
+			\textcolor[rgb]{0.4,0,0.7}{The function $f$ can be explicitly expressed as 
+			\begin{displaymath}
+				f(A) = n + \trace{A^TA} - 2\trace{\sqrt{A^TA}}
+			\end{displaymath}}
+			 \tcblower
+			\begin{itemize}
+				\p \item If $A$ is an invertible matrix, \p then using the linearity of $\mathrm{trace}$, 
+				\begin{displaymath}
+					f(A) = \trace{A^TA}+ n -2\sup_{B\in O(n,\rbb)} \trace{A^TB}
+				\end{displaymath}
+				\p \item If $A$ is a diagonal matrix with positive entries, then the maximizer will be $I$.
+				\p \item For any $A\in GL(n,\rbb)$, using the SVD and the polar decomposition of $A$ we conclude that the maximizer is $A\sqrt{A^TA}^{-1}$.
+			\end{itemize}
+			\DrawLine
+
+			\p \textbf{Note:} \textcolor[rgb]{0.5,0.7,0.1}{ The maximizer is unique if and only if $A$ is invertible.}
+		\end{tcolorbox}
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle<presentation>{$f$ is Morse-Bott}
+		\begin{itemize}
+			\p \item The map $f$ is differentiable if and only if $A$ is invertible.
+			\p \item For  any $A\in GL(n,\rbb)$
+				\begin{equation*}
+				 df_A  = 2A-2A\paran{\sqrt{A^TA}}^{-1}=-2A \paran{\sqrt{A^TA}^{-1}-I}.
+				\end{equation*}
+				\p \item Note that for any $H$
+			\begin{align*}
+				df_A(H) = \innerprod{-2A \paran{\sqrt{A^TA}^{-1}-I}}{H} = 0 \iff A^TA = I.
+			\end{align*}
+			\p \item The critical set of $f$ is $O(n,\rbb)$. 
+			\p \item $B\in \left(T_AO(n,\mathbb{R}\right)^\perp$ if $B=AW$ for some symmetric matrix $W$.
+			\p \item The Hessian matrix restricted to $(T_A O(n,\rbb))^\perp$ is $2I_{\frac{n(n+1)}{2}}$.
+		\end{itemize}
+	\end{frame}	
+
+
+	\begin{frame}
+		\frametitle<presentation>{Integral curve of $-\grad f$}
+		\begin{itemize}
+			\p \item If $\gamma(t)$ is an integral curve of $-\grad f$ initialized at $A$, then $\gamma(0)=A$ \p and 
+			\begin{equation}
+			\dfrac{d\gamma}{dt} = -2\gamma(t)+2\paran{\gamma(t)^T}^{-1}\sqrt{\gamma(t)^T\gamma(t)} \label{eq: 4.5}.
+			\end{equation}
+			\p \item The solution of \eqref{eq: 4.5} given by
+			\p 
+			\begin{equation}\label{eq: 4.6}
+			\gamma(t) = Ae^{-2t} + (1-e^{-2t})A\paran{\sqrt{A^TA}}^{-1}.
+			\end{equation} 
+			\p \item Note that $\gamma(t)$ is a flow line which deforms $GL(n,\rbb)$ to $O(n,\rbb)$.
+		\end{itemize}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle<presentation>{Previous deformation vs Gram-Schmidt deformation}
+		\p A modified curve
+		\begin{displaymath}
+			\eta(t)=A(1-t)+tA \left(\sqrt{A^TA}\right)^{-1}
+		\end{displaymath}
+		\p with the same image as $\gamma$, defines an actual deformation retraction of $GL(n,\rbb)$ to $O(n,\rbb)$. \p Apart from its origin via the distance function, this is a geometric deformation in the following sense. \p Given $A\in GL(n,\rbb)$, consider its columns as an ordered basis. \p This deformation deforms the ordered basis according to the length of the basis vectors and mutual angles between pairs of basis vectors in a geometrically uniform manner. \p This is in sharp contrast with Gram-Schmidt orthogonalization, also a deformation of $GL(n,\rbb)$ to $O(n,\rbb)$, which is asymmetric as it never changes the direction of the first column, the modified second column only depends on the first two columns and so on.
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle<presentation>{Characterization of Cut Locus}
+		\p 
+		\begin{definition}[Separating set]
+			Let $N$ be a subset of a Riemannian manifold $M$ . The \emph{\defn{separating set}}, denoted by $\sen$, \p  consists of all points $q\in M$ such that at least two distance minimal geodesics from $N$ to $q$ exist.
+		\end{definition}
+
+		\begin{itemize}
+			\p \item Franz-Erich Wolter in 1979 proved that the closure of $\se$ is $\cu$ \p and hence $\cu$ is a closed set.
+
+			\p \item The same result also holds for the cut locus of a submanifold,\p  that is, the closure $\sen$ is whole of $\cutn$ and hence cut locus of a submanifold is closed.
+
+			\p \item Now recall the example of distance squared function on $M(n,\rbb)$. \p Using the last item, we can say that the $\mathrm{Se}(O(n,\rbb))$ is the set of all singular matrices which is a closed set \p and hence the cut locus will be the set of all singular matrices.
+		\end{itemize}
+	\end{frame}	
+
+
+
+	\section{Regularity of distance squared function}
+	
+	\begin{frame}
+		\frametitle<presentation>{Regularity of the distance squared function}
+		\begin{theorem}
+			Let $M$ be a connected, complete Riemannian manifold and $N$ be an embedded submanifold of $M$. Suppose two $N$-geodesics exist joining $N$ to $q\in M$. Then $d^2(N,\cdot):M\to \mathbb{R}$ has no directional derivative at $q$ for vectors in direction of those two $N$-geodesics.
+		\end{theorem}
+	\end{frame}
+
+
+	\begin{frame}
+		\frametitle<presentation>{Outline of the proof}
+		\p
+		\begin{columns}[T] % align columns
+			\begin{column}{.44\textwidth}
+			\vspace{2cm}
+			\begin{overlayarea}{\textwidth}{6cm}
+				\includegraphics<2>[scale=0.45]{Figures/differentiability-1.pdf}
+				\includegraphics<3-5>[scale=0.45]{Figures/differentiability-2.pdf}
+				\includegraphics<6-9>[scale=0.45]{Figures/differentiability-3.pdf}
+				\includegraphics<10->[scale=0.45]{Figures/differentiability-4.pdf}
+			\end{overlayarea}
+			\end{column}%
+			\hfill%
+			\begin{column}{.52\textwidth}
+				\begin{itemize}
+					\p[4] \item \fontsmall We assume that all the geodesics are arc-length parametrized.
+					\p[5] \item \fontsmall The directional derivative from left is $2l$.
+					\begin{align*}
+						\p[7](d^2)'_-(q) & := \lim_{\varepsilon\to 0^+} \dfrac{(d(N,\gamma_i(l)))^2-(d(N,\gamma_i(l-\varepsilon)))^2}{\varepsilon} \\ \p[8]
+									& = \lim_{\varepsilon\to 0^+} \dfrac{l^2-(l-\varepsilon)^2}{\varepsilon}\\ \p[9]
+									& = 2l.
+				    \end{align*}
+				    \p[11] \item \fontsmall Using some version of ``cosine rule'' we have
+				    \begin{displaymath}
+				    	a^2 = \varepsilon^2 + \tau^2 + 2\varepsilon\tau \cos \omega + K(\tau)\varepsilon^2\tau^2
+				    \end{displaymath}
+				    \p[12] \item \fontsmall Finally, we can show that the derivative from the right is strictly bounded above by $2l$. 
+				\end{itemize}
+			\end{column}%
+		\end{columns}
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle<presentation>{The distance squared function is Morse-Bott}
+		\p
+		\begin{tcolorbox}[
+				breakable,
+				title=Proposition,colback=white,
+				colbacktitle=green!20!white,
+				coltitle=black,
+				fonttitle=\bfseries,
+				bottomrule=0pt,
+				toprule=0pt,
+				leftrule=2pt,
+				rightrule=0pt,
+				titlerule=0pt,
+				arc=2pt,
+				outer arc=2pt,
+				colframe=red ]
+			Consider the distance squared function with respect to a submanifold $N$ in $M$. Then this is a Morse-Bott function with $N$ as the critical submanifold.
+		\end{tcolorbox}
+		
+	\end{frame}	
+
+	
+
+		\section{\texorpdfstring{$M-\cutn$}{} deforms to \texorpdfstring{$N$}{}} % \texorpdfstring{} will remove the hyperref warning 
+		\begin{frame}
+			\frametitle<presentation>{$M-\cutn$ deforms to $N$}
+			\p 
+			\begin{theorem}
+				Let $M$ be a complete Riemannian manifold and $N$ be compact submanifold of $M$. Then $N$ is a deformation retract of $M-\cutn$.
+			\end{theorem}
+			\p Define
+			\begin{displaymath}
+				\mathbf{s}:S(\nu)\to [0,\infty],\,\,\mathbf{s}(v):=\sup\{t\in [0,\infty)\,|\,\gamma_v |_{[0,t]}\,\,\textup{is an $N$-geodesic}\},
+			\end{displaymath}
+			where $S(\nu)$ is the unit normal bundle of $N$ and $[0,\infty]$ is the one-point compactification of $[0,\infty)$. \p The map $\mathbf{s}$ is continuous \p and is finite if $M$ is compact. \p Note that the cut locus is
+			\begin{displaymath}
+				\cutn = \exp_\nu\curlybracket{\mathbf{s}(v)v: v\in S(\nu)},
+			\end{displaymath}
+			\p where $\exp_\nu:\nu\to M,~\exp_\nu(p,v)\defeq \exp_p(v)$.
+			\p Define an open neighborhood $U_0(N)$ of the zero section in the normal bundle as
+			\begin{displaymath}
+				U_0(N) \defeq \curlybracket{av: 0\le a< {\mathbf{s}}(v),~v\in S(\nu)}.
+			\end{displaymath}
+			\p Note that $\exp_\nu$ is a diffeomorphism on $U_0(N)$ and set $U(N) = \exp_\nu(U_0(N)) = M - \cutn$. 
+		\end{frame}	
+
+		\begin{frame}
+			\frametitle<presentation>{}
+			\begin{overlayarea}{\textwidth}{6cm}
+				\includegraphics<1>[width=0.95\textwidth]{Figures/normal_bundle-top_seminar-2.pdf}
+				\includegraphics<2>[width=0.95\textwidth]{Figures/normal_bundle-top_seminar-3.pdf}
+				\includegraphics<3>[width=0.95\textwidth]{Figures/normal_bundle-top_seminar-4.pdf}
+				\includegraphics<4->[width=0.95\textwidth]{Figures/normal_bundle-top_seminar-5.pdf}
+			\end{overlayarea}
+			\p[5] The space $U_0(N)$ deforms to the zero section on the normal bundle. 
+			\p[6]  
+			\begin{align*}
+				H : U_0(N) \times [0,1] \to U_0(N), ((p,av),t)\mapsto (p,tav).
+			\end{align*}
+		\end{frame}	
+
+		\begin{frame}
+			Now consider the following diagram:
+			\begin{align*}
+				\xymatrix{
+					U_0(N) \times [0,1] \ar[r]^H  				   & U_0(N) \ar[d]^{exp_\nu} \\  
+					U \times [0,1] \ar[u]^{\exp_\nu^{-1}} \ar[r]^F & U \only<1->{\cong M-\cutn }
+				}
+			\end{align*}
+			\p[2] 
+			The map $F$ can be defined by taking the compositions
+			\begin{displaymath}
+				F = \exp_\nu \circ H \circ \exp_\nu^{-1}.
+			\end{displaymath}
+			\hspace{11cm} \qed \\
+
+			\p[3] We saw that for $M= M(n,\rbb)$ and $N=O(n,\rbb)$, the cut locus $\mathrm{Cu}(O(n,\rbb))$ is the set of all singular matrices and $M-\mathrm{Cu}(O(n,\rbb))$, which is the set of invertible matrices, deforms to $O(n,\rbb)$.
+		\end{frame}	
+
+
+		\begin{frame}
+			\frametitle<presentation>{References}
+			\begin{enumerate}
+				\item F.E.Wolter, \emph{Distance function and cut loci on a complete Riemannian manifold}, Arch. Math. (Basel), 32 (1979), pp. 92-96.
+				\item T. Sakai, \emph{Riemannian geometry}, vol. 149 of Translations of Mathematical Monographs, American Mathematical Society.
+				\item J.J. Hebda, \emph{The local homology of cut loci in Riemannian manifolds}, Tohoku Math. J. (2), 35 (1983), pp. 45-52.
+				\item Basu S. and Prasad S., \emph{A connection between cut locus, Thom space and Morse-Bott functions}, 2020. available at \url{https://arxiv.org/abs/2011.02972}.
+			\end{enumerate}
+		\end{frame}	
+
+\end{document}
