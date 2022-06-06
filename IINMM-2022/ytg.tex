@@ -1,0 +1,445 @@
+\documentclass{beamer}      
+\mode<presentation>{\usetheme{AnnArbor}}
+\usecolortheme{whale}
+
+\usepackage{mathptmx}
+\usepackage{helvet}
+
+\setbeamercolor{frametitle}{parent=subsection in head/foot}
+\setbeamercolor{frametitle right}{parent=section in head/foot}
+
+\makeatletter
+\pgfdeclarehorizontalshading[frametitle.bg,frametitle right.bg]{beamer@frametitleshade}{\paperheight}{%
+    color(0pt)=(frametitle.bg);
+    color(\paperwidth)=(frametitle right.bg)}
+
+\AtBeginDocument{
+    \pgfdeclareverticalshading{beamer@topshade}{\paperwidth}{%
+        color(0pt)=(bg);
+        color(4pt)=(black!50!bg)}
+}
+
+\addtobeamertemplate{headline}
+{}
+{%
+    \vskip-0.2pt
+    \pgfuseshading{beamer@topshade}
+    \vskip-2pt
+}
+
+
+\setbeamertemplate{frametitle}
+{%
+    \nointerlineskip%
+    \vskip-2pt%
+    \hbox{\leavevmode
+        \advance\beamer@leftmargin by -12bp%
+        \advance\beamer@rightmargin by -12bp%
+        \beamer@tempdim=\textwidth%
+        \advance\beamer@tempdim by \beamer@leftmargin%
+        \advance\beamer@tempdim by \beamer@rightmargin%
+        \hskip-\Gm@lmargin\hbox{%
+            \setbox\beamer@tempbox=\hbox{\begin{minipage}[b]{\paperwidth}%
+                    \vbox{}\vskip-.75ex%
+                    \leftskip0.3cm%
+                    \rightskip0.3cm plus1fil\leavevmode
+                    \insertframetitle%
+                    \ifx\insertframesubtitle\@empty%
+                    \strut\par%
+                    \else
+                    \par{\usebeamerfont*{framesubtitle}{\usebeamercolor[fg]{framesubtitle}\insertframesubtitle}\strut\par}%
+                    \fi%
+                    \nointerlineskip
+                    \vbox{}%
+                \end{minipage}}%
+                \beamer@tempdim=\ht\beamer@tempbox%
+                \advance\beamer@tempdim by 2pt%
+                \begin{pgfpicture}{0pt}{0pt}{\paperwidth}{\beamer@tempdim}
+                    \usebeamercolor{frametitle right}
+                    \pgfpathrectangle{\pgfpointorigin}{\pgfpoint{\paperwidth}{\beamer@tempdim}}
+                    \pgfusepath{clip}
+                    \pgftext[left,base]{\pgfuseshading{beamer@frametitleshade}}
+                \end{pgfpicture}
+                \hskip-\paperwidth%
+                \box\beamer@tempbox%
+            }%
+            \hskip-\Gm@rmargin%
+        }%
+        \nointerlineskip
+        \vskip-0.2pt
+        \hbox to\textwidth{\hskip-\Gm@lmargin\pgfuseshading{beamer@topshade}\hskip-\Gm@rmargin}
+        \vskip-2pt
+    }
+\makeatother
+
+\setbeamercolor{section in toc}{fg=teal}
+%%%
+\definecolor{brightpink}{rgb}{1.0, 0.0, 0.5}
+\setbeamercolor{structure}{fg=cyan!80!black}
+\setbeamercolor*{block title example}{fg=blue!50,bg= blue!10}
+\setbeamercolor*{block body example}{fg= red,bg= blue!5}
+\usefonttheme{serif}
+
+\setbeamertemplate{footline}[page number]{} 
+
+\setbeamercolor{headline}{fg=blue!90!black,bg=cyan!90!black}
+\setbeamercolor{palette primary}{fg=white,bg=cyan!90!black}
+\setbeamercolor{palette secondary}{fg=white,bg=cyan!90!black}
+\setbeamercolor{palette tertiary}{fg=white,bg=black}
+\setbeamercolor{frametitle}{fg=white,bg=cyan!50!black}
+\setbeamercolor{alerted text}{fg=brightpink}
+
+
+\colorlet{titleleft}{cyan}
+\colorlet{titleright}{black}
+
+\setbeamercolor*{frametitle}{fg=white}
+
+\makeatletter
+\pgfdeclarehorizontalshading[titleleft,titleright]{beamer@frametitleshade}{\paperheight}{%
+    color(0pt)=(titleleft);
+    color(\paperwidth)=(titleright)}
+\makeatother
+
+%============================ continue enumerate ===================================
+% \setbeamercovered{highly dynamic}
+
+\newcounter{saveenumi}
+\newcommand{\seti}{\setcounter{saveenumi}{\value{enumi}}}
+\newcommand{\conti}{\setcounter{enumi}{\value{saveenumi}}}
+
+%====================================================================================
+
+% ====================================================================================================
+
+% =================== Different colors for different blocks =======================================
+% Thanks to https://tex.stackexchange.com/questions/347269/different-colors-for-different-types-of-blocks-in-beamer
+
+\setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
+% \setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!50!bg}
+
+\setbeamercolor{block title example}{use=example text,fg=example text.fg,bg=example text.fg!20!bg}
+% \setbeamercolor{block body example}{parent=normal text,use=block title example,bg=block title example.bg!50!bg}
+
+\addtobeamertemplate{proof begin}{%
+    \setbeamercolor{block title}{fg=black,bg=yellow!50!white}
+    % \setbeamercolor{block body}{fg=red, bg=red!30!white}
+}{}
+
+\BeforeBeginEnvironment{theorem}{
+    \setbeamercolor{block title}{fg=black,bg=orange!50!white}
+    % \setbeamercolor{block body}{fg=orange, bg=orange!30!white}
+}
+\AfterEndEnvironment{theorem}{
+ \setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
+ % \setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!50!bg, fg=black}
+}
+
+\BeforeBeginEnvironment{definition}{%
+    \setbeamercolor{block title}{fg=black,bg=cyan!50!white}
+    % \setbeamercolor{block body}{fg=pink, bg=pink!30!white}
+}
+\AfterEndEnvironment{definition}{
+ \setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
+ % \setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!50!bg, fg=black}
+}
+
+\BeforeBeginEnvironment{remark}{%
+    \setbeamercolor{block title}{fg=black,bg=teal!50!white}
+    % \setbeamercolor{block body}{fg=pink, bg=pink!30!white}
+}
+\AfterEndEnvironment{remark}{
+ \setbeamercolor{block title}{use=structure,fg=structure.fg,bg=structure.fg!20!bg}
+ % \setbeamercolor{block body}{parent=normal text,use=block title,bg=block title.bg!50!bg, fg=black}
+}
+% ====================================================================================================
+
+
+\input{Macros/newcommands}
+\input{Macros/packages}
+
+\AtBeginSection[]{
+  \begin{frame}
+  \vfill
+  \centering
+  \begin{beamercolorbox}[sep=8pt,center,shadow=true,rounded=true]{title}
+    \usebeamerfont{title}\secname\par%
+  \end{beamercolorbox}
+  \vfill
+  \end{frame}
+}
+
+%\hypersetup{pdfpagemode=FullScreen}
+\title[Cut Locus]{Morse-Bott functions, Cut locus and their relations \\[1ex] \small DMV-{\"O}MV Jahrestangung 2021}
+\author{Sachchidanand Prasad}
+\institute[IISERK]{\small Indian Insitute of Science Education and Research Kolkata}
+\date{1st October, 2021}
+% logo 
+\titlegraphic{%
+   \includegraphics[width=1.5cm,keepaspectratio]{figures/iiserk-logo.png}%
+}
+
+% \logo{%
+%   \makebox[0.95\paperwidth]{%
+%     % \includegraphics[width=4cm,keepaspectratio]{img/csm_dmv-logo.png}%
+%     \hfill%
+%     \includegraphics[width=1.5cm,keepaspectratio]{img/iiserk-logo.png}%
+%   }%
+% }
+
+% \definecolor{titlepage}{rgb}{0.98, 0.94, 0.75}
+
+\setbeamertemplate{navigation symbols}{} % Navigation symbols will be removed
+% \setbeamertemplate{footline}{}
+\setbeamertemplate{itemize items}[ball]  % Itemize into balls
+
+\begin{document}
+
+\begin{frame}
+ \titlepage
+  \vspace{0.1cm}
+  \begin{center}
+    \Large \textcolor[rgb]{0.4,0,0.5}{Young Topologists and Geometers} \\
+  \end{center}
+\end{frame}
+
+	\begin{frame}
+		\frametitle<presentation>{Outline of the talk}
+		\tableofcontents
+	\end{frame}	
+
+\section{Geometric aspects of the cut locus}
+
+	\begin{frame}
+		\frametitle<presentation>{Morse-Bott Function}
+		
+		\p\begin{definition}[Morse-Bott functions]
+			\p Let $M$ be a Riemannian manifold. A smooth submanifold $ N\subset M $ is said to be {\emph{\defn{non-degenerate critical submanifold}}} of $f:M\to \mathbb{R}$ if $N\subseteq \crf$ \p and for any $p\in N$, $\hess_{p}(f)$ is \alert<5>{non-degenerate in the direction normal to $N$ at $p$}. \p[6] The function $f$ is said to be {\emph{\defn{Morse-Bott}}} if the connected components of $ \crf $ are non-degenerate critical submanifolds.
+		\end{definition}
+		\p[5] The $\hess_p(f)$ is \alert<5>{non-degenerate in the direction normal to $N$ at $p$} means for any $V\in (T_pN)^\perp$ there exists $W\in  (T_pN)^\perp$ such that $\hess_p(f)(V,W)\neq 0$.
+	\end{frame}	
+
+\begin{frame}
+		\frametitle<presentation>{Cut locus of a submanifold}
+
+		\p
+		\begin{definition}[Distance minimal geodesic] \label{defn:distance_minimal_geodesic}
+			\p A geodesic $\gamma $ is called a \emph{\defn{distance minimal geodesic}} joining $N$ to $p$ \p if there exists $q\in N$ \p such that $\gamma$ is a minimal geodesic joining $q$ to $p$ \p and $l(\gamma)= d(p,N) $. \p We will call such geodesics as \textit{$N$-geodesics}.
+		\end{definition}
+
+		\p 
+		\begin{definition}[Cut locus] \label{defn:cut_locus}
+			\p Let $M$ be a Riemannian manifold \p and $N$ be any non-empty subset of $M$. \p If $\cutn$ denotes the \emph{\defn{cut locus of $N$}}, \p then we say that $q\in \cutn $ if there exists an $N$-geodesic joining $N$ to $q$ \p such that any extension of it beyond $q$ is not a distance minimal geodesic.
+		\end{definition}
+	\end{frame}
+
+	\begin{frame}
+		\frametitle<presentation>{An Example}
+		\begin{figure}[htbp]
+			\begin{overlayarea}{6cm}{6cm}
+				\includegraphics<2>[page = 1, width = \textwidth]{figures/cut-locus-of-great-circle.pdf}
+				\includegraphics<3>[page = 2, width = \textwidth]{figures/cut-locus-of-great-circle.pdf}
+				\includegraphics<4>[page = 3, width = \textwidth]{figures/cut-locus-of-great-circle.pdf}
+				\includegraphics<5>[page = 4, width = \textwidth]{figures/cut-locus-of-great-circle.pdf}
+				\includegraphics<6>[page = 5, width = \textwidth]{figures/cut-locus-of-great-circle.pdf}
+			\end{overlayarea}
+		\end{figure}
+	\end{frame}	
+	
+
+	\begin{frame}
+		\frametitle<presentation>{Separating set of \texorpdfstring{$N$}{N}}
+
+		\p 
+		\begin{definition}[Separating set] \label{defn:separating_set}
+			\p Let $N$ be a subset of a Riemannian manifold $M$. \p The \emph{\defn{separating set}}, denoted by $\sen$, \p  consists of all points $q\in M$ \p such that at least two distance minimal geodesics from $N$ to $q$ exist.
+		\end{definition}
+
+		\p 
+		\begin{theorem}[Basu S., Prasad S., 2021]\label{thm:se_closure_is_cu}
+			For a complete Riemannian manifold $M$ and a compact submanifold $N$ of $M$, 
+			\begin{displaymath}
+				\overline{\sen} = \cutn.
+			\end{displaymath}
+		\end{theorem}
+	\end{frame}
+
+% \section{An illuminating example}
+	\begin{frame}
+		\frametitle<presentation>{An illuminating example}
+		\p Let $ M = M(n,\rbb) $, the set of $n\times n$ matrices, and $ N=O(n,\rbb) $, set of all orthogonal $n\times n$ matrices. \p We fix the standard Euclidean metric on $M(n,\rbb)$ by identifying it with $\mathbb{R}^{n^2}$. \p This induces a distance function given by
+		\begin{equation*}
+			d(A,B) \defeq \sqrt{\trace{(A-B)^T(A-B)}}, ~~A,B\in M(n,\rbb)
+		\end{equation*}
+		\p
+		Consider the distance squared function
+		\begin{displaymath}
+		f: M(n,\rbb)\to \rbb,~~ A\mapsto d^2(A, O(n,\rbb)).
+		\end{displaymath}
+	\end{frame}
+
+	\begin{frame}
+	\setbeamercovered{transparent}
+		\begin{itemize}[<+-| alert@+>]
+			   \item The function is $f(A) = n + \trace{A^TA} - 2\trace{\sqrt{A^TA}}$.
+			   \item It is differentiable at $A$ if and only if $A$ is invertible.
+			   \item It is a Morse-Bott function with critical submanifold as $O(n,\rbb)$.
+			   \item If $\gamma(t)$ is an integral curve of $-\grad f$ initialized at $A$, then 
+	   			\begin{equation}
+	   				\dfrac{d\gamma}{dt} = -2\gamma(t)+2\paran{\gamma(t)^T}^{-1}\sqrt{\gamma(t)^T\gamma(t)} \label{eq: 4.5}.
+	   			\end{equation}
+			    \item The solution of \eqref{eq: 4.5} given by
+			
+			\begin{equation}\label{eq: 4.6}
+			\gamma(t) = Ae^{-2t} + (1-e^{-2t})A\paran{\sqrt{A^TA}}^{-1},~~\gamma(0)=A.
+			\end{equation} 
+			   \item Note that $\gamma(t)$ is a flow line which deforms $GL(n,\rbb)$ to $O(n,\rbb)$.
+			   \item The separating set of $O(n,\rbb)$ in $M(n,\rbb)$ is set of singular matrices and as it is closed, the cut locus is the same.
+		\end{itemize}
+		% \setbeamercovered{transparent}
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle<presentation>{Results generalized from the example}
+		\begin{theorem}
+			\p Let $M$ be a connected, \p complete Riemannian manifold \p and $N$ be an embedded submanifold of $M$. \p Suppose two  $N$-geodesics exists joining $N$ to $q\in M$ \p Then $d^2(N,\cdot):M\to \mathbb{R}$ has no directional derivative at $q~$ \p for vectors in direction of those two $N$-geodesic. 
+		\end{theorem}
+		
+		\p 
+		\begin{theorem}
+			Let $M$ be a complete Riemannian manifold \p and $N$ be compact submanifold of $M$. \p Then $N$ is a deformation retract of $M-\cutn$.
+		\end{theorem}
+
+		\p 
+		\begin{theorem}
+			The cut locus $\cutn$ is a strong deformation retract of $M-N$. \p In particular, $(M,\cutn)$ is a good pair \p and the number of path components of $\cutn$ equals that of $M-N$.
+		\end{theorem}
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle<presentation>{Outline of the proof of the deformation}
+		\p Define
+			\begin{displaymath}
+				\mathbf{s}:S(\nu)\to [0,\infty],\,\,\mathbf{s}(v):=\sup\{t\in [0,\infty)\,|\,\gamma_v |_{[0,t]}\,\,\textup{is an $N$-geodesic}\},
+			\end{displaymath}
+			where $S(\nu)$ is the unit normal bundle of $N$ and $[0,\infty]$ is the one-point compactification of $[0,\infty)$. \p The map $\mathbf{s}$ is continuous \p and is finite if $M$ is compact. \p Note that the cut locus is
+			\begin{displaymath}
+				\cutn = \exp_\nu\curlybracket{\mathbf{s}(v)v: v\in S(\nu)},
+			\end{displaymath}
+			\p where $\exp_\nu:\nu\to M,~\exp_\nu(p,v)\defeq \exp_p(v)$.
+			\p Define an open neighborhood $U_0(N)$ of the zero section in the normal bundle as
+			\begin{displaymath}
+				U_0(N) \defeq \curlybracket{av: 0\le a< {\mathbf{s}}(v),~v\in S(\nu)}.
+			\end{displaymath}
+			\p Note that $\exp_\nu$ is a diffeomorphism on $U_0(N)$ and set $U(N) = \exp_\nu(U_0(N)) = M - \cutn$. 
+	\end{frame}	
+	\begin{frame}
+		\frametitle<presentation>{}
+		\begin{figure}[htbp]
+			\centering
+			\includegraphics<1>[width=0.95\textwidth]{figures/normal_bundle-top_seminar-2.pdf}
+			\includegraphics<2>[width=0.95\textwidth]{figures/normal_bundle-top_seminar-3.pdf}
+			\includegraphics<3>[width=0.95\textwidth]{figures/normal_bundle-top_seminar-4.pdf}
+			\includegraphics<4->[width=0.95\textwidth]{figures/normal_bundle-top_seminar-5.pdf}
+		\end{figure}
+		\p[5] The space $U_0(N)$ deforms to the zero section on the normal bundle. 
+		\p[6]  
+		\begin{align*}
+			H : U_0(N) \times [0,1] \to U_0(N), ((p,av),t)\mapsto (p,tav).
+		\end{align*}
+	\end{frame}	
+
+	\begin{frame}
+		Now consider the following diagram:
+		\begin{align*}
+			\xymatrix{
+				U_0(N) \times [0,1] \ar[r]^H  				   & U_0(N) \ar[d]^{exp_\nu} \\  
+				U \times [0,1] \ar[u]^{\exp_\nu^{-1}} \ar[r]^F & U \only<1->{\cong M-\cutn }
+			}
+		\end{align*}
+		\p[2] 
+		The map $F$ can be defined by taking the compositions
+		\begin{displaymath}
+			F = \exp_\nu \circ H \circ \exp_\nu^{-1}.
+		\end{displaymath}
+	\end{frame}	
+
+
+	\section{Topological aspects of the cut locus}
+	\begin{frame}
+		\frametitle<presentation>{Thom space}
+		 
+		 \p
+		 \begin{definition}[Thom space]
+		 	Let  $\pi: E\to B$ be a real vector bundle over a paracompact space $B$ with a metric. Let $D(E)$ be the unit disk bundle and $S(E)$ be the unit sphere bundle. \p Then the \emph{\defn{Thom space of $E$}}, denote by $\mathrm{Th}(E)$ is the quotient $\mathrm{Th}(E) \defeq D(E)/S(E)$.
+		 \end{definition}
+
+		 \p
+		 \begin{remark}
+		 	If $B$ is compact, then $\mathrm{Th}(E)$ is the one point compactification of $E$. 
+		 \end{remark}
+	\end{frame}	
+
+
+	\begin{frame}
+		\begin{definition}[Rescaled exponential]
+			The \emph{\defn{rescaled exponential}} map is defined to be 
+			\begin{displaymath}
+				\widetilde{\exp}:D(\nu)\to M,~ (p,v)\mapsto \begin{cases}
+					\exp_p(\mathbf{s}(\hat{v})v), &\text{ if } v = \|v\|\hat{v}\\
+					p, & \text{ if } v=0.
+				\end{cases}
+			\end{displaymath}
+		\end{definition}
+
+		\vspace{1.5cm}
+		\p
+		\begin{remark}
+			Since $\mathbf{s}$ is continuous, the rescaled exponential is also continuous and is surjective. \p Also note that $\widetilde{\exp}(S(\nu)) = \mathrm{Cu}(N)$.
+		\end{remark}
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle<presentation>{The Main Theorem}
+		\begin{theorem}[Basu S., Prasad S., 2021]
+			Let $N$ be an embedded submanifold inside a closed, connected Riemannian manifold $M$. If $\nu$ denotes the normal bundle of $N$ in $M$, then there is a homeomorphism 
+			\begin{displaymath}
+				\widetilde{\exp} : D(\nu)/S(\nu) \xrightarrow{\cong} M/\mathrm{Cu}(N).
+			\end{displaymath}
+		\end{theorem}
+	\end{frame}	
+
+	\begin{frame}
+		\frametitle<presentation>{Applications}
+		\begin{enumerate}
+			\p \item The inclusion map $i:\mathrm{Cu}(N)\hookrightarrow M$  induces a long exact sequence in homology \p
+			\begin{displaymath}
+				\cdots \to H_j(\mathrm{Cu}(N)) \xrightarrow{i_*}H_j(M) \to H_j(M,\mathrm{Cu}(N)) \xrightarrow{\partial} H_{j-1}(\cutn) \to \cdots,
+			\end{displaymath}
+			\p so 
+			\begin{displaymath}
+				\cdots \to H_j(\mathrm{Cu}(N)) \xrightarrow{i_*}H_j(M) \xrightarrow{q} \tilde{H}_j(\mathrm{Th}(\nu)) \xrightarrow{\partial} H_{j-1}(\cutn) \to \cdots 
+			\end{displaymath}
+			\p \item If $N$ is a closed submanifold of $M$ with $l$ components, and $\dim M =d$, \p then $H_{d-1}(\cutn)$ is free abelian of rank $l-1$ and $H_{d-j}(\cutn)\equiv H^j(M)$ if $j-2\ge k$, where $k$ is the maximum of the dimension of the components of $N$.
+
+			\p \item Let $N$ be a smooth homology $k$-sphere, $k>0$, embedded in a smooth Riemannian manifold $M$ homeomorphic to $S^d$. \p  If $d\ge k+3$, then the cut locus $\cutn$ is homotopy equivalent to $S^{d-k-1}$.
+			\seti
+		\end{enumerate}
+	\end{frame}	
+
+	\begin{frame}
+		\begin{enumerate}
+			\conti
+			\item Let $N$ be a real analytic homology $k$-sphere embedded in a real analytic homology $d$-sphere $M$. If $d\ge k+3$, then the cut locus $\cutn$ is a simplicial complex of dimension at most $(d-1)$, having the homology of $(d-k-1)$-sphere with fundamental group isomorphic to that of $M$.
+		\end{enumerate}
+	\end{frame}	
+
+	\begin{frame}
+		\huge{
+		\begin{center}
+			Thank You for your attention!
+		\end{center}
+		}
+	\end{frame}	
+
+\end{document}

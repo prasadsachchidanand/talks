@@ -1,0 +1,4 @@
+\beamer@sectionintoc {1}{Statement of the main result}{3}{0}{1}
+\beamer@sectionintoc {2}{Idea of the proof}{66}{0}{2}
+\beamer@sectionintoc {3}{Geodesics on $M$ and $M/G$}{98}{0}{3}
+\beamer@sectionintoc {4}{Proof of the main theorem}{113}{0}{4}
