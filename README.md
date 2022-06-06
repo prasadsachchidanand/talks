@@ -2,4 +2,4 @@
 
 This contains the TeX file for my talk. See the slides [here](https://students.iiserkol.ac.in/~sp17rs038/assets/attachments/IINMM-2022.pdf).
 
-<img src="IINMM-20220slide-sc.png" height="400" />
+<img src="IINMM-2022-slide-sc.png" height="400" />
